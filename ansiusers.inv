@@ -1,0 +1,5 @@
+[group1]
+learnworker1 ansible_host=172.31.46.125 ansible_user=root
+jenkinworker2 ansible_host=172.31.13.22 ansible_user=root
+[group2]
+jenkinmaster ansible_host=172.31.4.62 ansible_user=root
