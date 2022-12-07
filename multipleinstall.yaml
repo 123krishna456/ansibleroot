@@ -1,0 +1,16 @@
+---
+- name: Installing multiple tools
+  hosts: all 
+  tasks:
+    - name: Updating server
+      apt:
+        upgrade: yes
+        update_cache: yes
+    - name: Multiple installation
+      apt: 
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - default-jdk
+        - git
+        - tree
