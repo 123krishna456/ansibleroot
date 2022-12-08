@@ -1,0 +1,21 @@
+---
+- name: Tomcat Installation
+  hosts: group1
+  tasks:
+    - name: Java Installation
+      apt:
+        name: default-jdk
+        state: latest
+    - name: Download Tomcat Package
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+        dest: /opt
+    - name: Tomcat Package Extraction
+      unarchive:
+        src: /opt/apache-tomcat-10.0.27.tar.gz
+        dest: /opt
+        remote_src: yes
+    - name: Stop Tomcat
+      shell: /opt/apache-tomcat-10.0.27/bin/shutdown.sh
+    - name: Start Tomcat
+      shell: /opt/apache-tomcat-10.0.27/bin/startup.sh
