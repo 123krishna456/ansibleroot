@@ -1,0 +1,6 @@
+---
+# defaults file for jenkinsansible
+jenkinsurlkey: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+repo_config_combo: deb http://pkg.jenkins.io/debian-stable binary/
+java_pack: default-jdk
+jenkins_pack: jenkins

@@ -1,0 +1,5 @@
+---
+- name: Jenkins Installation using roles
+  hosts: all
+  roles:
+    - jenkinsansible

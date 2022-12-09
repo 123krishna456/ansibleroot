@@ -1,0 +1,37 @@
+---
+# tasks file for tomcatapache
+- name: Java Installation
+  apt:
+    name: "{{ java_pack }}"
+    state: latest
+- name: Download Tomcat Package
+  get_url:
+    url: "{{ tomcaturl }}"
+    dest: "{{ destinationfolder }}"
+- name: Tomcat Package Extraction
+  unarchive:
+    src: "{{ item }}"
+    dest: "{{ destinationfolder }}"
+    remote_src: yes
+  with_items:
+    - "{{ destinationfoldersubdir }}"
+- name: Changing connector port using template
+  template:
+    src: template/server.xml.j2
+    dest: "{{ serverxml_path }}"
+- name: Changing tomcat-users.xml using template
+  template:
+    src: template/tomcat-users.xml.j2
+    dest: "{{ tomcatusersxml_path }}"
+- name: Changing manager context.xml settings using template
+  template:
+    src: template/context.xml.j2
+    dest: "{{ managersettings_path }}"
+- name: Changing host-manager context.xml settings using template
+  template:
+    src: template/context.xml.j2
+    dest: "{{ hostmanagersettings_path }}"
+- name: Stop Tomcat
+  shell: nohup "{{ destinationfolder }}"/apache-tomcat-10.0.27/bin/shutdown.sh &
+- name: Start Tomcat
+  shell: nohup "{{ destinationfolder }}"/apache-tomcat-10.0.27/bin/startup.sh &

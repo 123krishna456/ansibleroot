@@ -1,0 +1,25 @@
+---
+# tasks file for jenkinsansible
+- name: Update server
+  apt:
+    update_cache: true
+- name: install java
+  apt:
+    name: "{{ java_pack }}"
+    state: latest
+- name: jenkins apt repository key
+  apt_key:
+    url: "{{ jenkinsurlkey }}"
+    state: present
+- name: apt repository configuration
+  apt_repository:
+    repo: "{{ repo_config_combo }}"
+    state: present
+- name: Install jenkins
+  apt:
+    name: "{{ jenkins_pack }}"
+    update_cache: true
+- name: Start jenkins
+  service:
+    name: jenkins
+    state: started

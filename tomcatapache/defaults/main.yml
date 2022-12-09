@@ -1,0 +1,21 @@
+---
+# defaults file for tomcatapache
+java_pack: default-jdk
+tomcaturl: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+destinationfolder: /opt
+destinationfoldersubdir: /opt/apache-tomcat-10.0.27.tar.gz
+serverxml_path: /opt/apache-tomcat-10.0.27/conf/server.xml
+tomcatportnumber: 8050
+newroles: <role rolename="manager-gui"/>
+ <role rolename="manager-script"/>
+ <role rolename="manager-jmx"/>
+ <role rolename="manager-status"/>
+ <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+ <user username="deployer" password="deployer" roles="manager-script"/>
+ <user username="tomcat" password="s3cret" roles="manager-gui"/>
+tomcatusersxml_path: /opt/apache-tomcat-10.0.27/conf/tomcat-users.xml
+pattern1: <!--
+pattern2: -->
+managersettings_path: /opt/apache-tomcat-10.0.27/webapps/manager/META-INF/context.xml
+hostmanagersettings_path: /opt/apache-tomcat-10.0.27/webapps/host-manager/META-INF/context.xml
+               
